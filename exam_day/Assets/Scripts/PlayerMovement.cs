@@ -4,30 +4,49 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D body;
-    public SpriteRenderer renderer;
+    Rigidbody2D body;
+    SpriteRenderer renderer;
+    Animator animator;
+
 
     float horizontal;
     float vertical;
     float moveLimiter = 0.7f;
 
+    string animationState = "AnimationState";
+
     public float runSpeed = 10.0f;
+
+    enum PlayerState
+    {
+        Idle = 0,
+        Walking = 1
+    }
 
     void Start ()
     {
         body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-    // Gives a value between -1 and 1
-        horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
-        vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+
+        UpdateState();
     }
 
     void FixedUpdate()
     {
+        MoveCharacter();
+    
+    }
+
+    private void MoveCharacter(){
+        // Gives a value between -1 and 1
+        horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
+        vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+
         if (horizontal != 0 && vertical != 0) // Check for diagonal movement
         {
             // limit movement speed diagonally, so you move at 70% speed
@@ -46,6 +65,17 @@ public class PlayerMovement : MonoBehaviour
         {
             renderer.flipX = true;
         }
+
     }
+
+    private void UpdateState(){
+
+        if (horizontal != 0 || vertical != 0){
+            animator.SetInteger(animationState, (int)PlayerState.Walking);
+        } else {
+            animator.SetInteger(animationState, (int)PlayerState.Idle);
+        }
+    }
+
 }
 
