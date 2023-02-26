@@ -18,7 +18,8 @@ public class EnemyBasicPathing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPosition = GameObject.Find("PlayerObject").transform.position;
+        if(GameObject.FindWithTag("Player") == null) return;
+        playerPosition = GameObject.FindWithTag("Player").transform.position;
         Vector2 direction = playerPosition - body.position;
         direction.Normalize();
         body.velocity = direction * speed;
