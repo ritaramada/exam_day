@@ -5,17 +5,13 @@ using UnityEngine;
 public class Player : Character
 {
 
+    public HitPoints hitPoints;
     public HealthBar healthBarPrefab;
     HealthBar healthBar;
 
     public void Start()
     {
-        
         hitPoints.value = startingHitPoints;
-        healthBar = Instantiate(healthBarPrefab);
-
-        healthBar.character = this;
-
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -64,5 +60,48 @@ public class Player : Character
         return false;
 
 
+    }
+
+    public override IEnumerator DamageCharacter(float damage, float interval)
+    {
+        while (true)
+        {
+
+            hitPoints.value -= damage;
+            if (hitPoints.value <= float.Epsilon)
+            {
+                KillCharacter();
+                break;
+            }
+            if (interval > float.Epsilon)
+            {
+                yield return new WaitForSeconds(interval);
+
+            }
+            else
+            {
+                break;
+            }
+
+        }
+    }
+
+    public override void KillCharacter()
+    {
+        base.KillCharacter();
+
+        Destroy(healthBar.gameObject);
+    }
+
+    public override void ResetCharacter()
+    {
+        healthBar = Instantiate(healthBarPrefab);
+        healthBar.character = this;
+        hitPoints.value = startingHitPoints;
+    }
+
+    private void OnEnable()
+    {
+        ResetCharacter();
     }
 }
