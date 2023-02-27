@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Player : Character
 {
+
+    public HitPoints hitPoints;
+    public HealthBar healthBarPrefab;
+    HealthBar healthBar;
+
+    public void Start()
+    {
+        hitPoints.value = startingHitPoints;
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("CanBePickedUp"))
@@ -11,32 +21,87 @@ public class Player : Character
             Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
             if(hitObject !=null){
 
-                            switch(hitObject.itemType)
-            {
-                case Item.ItemType.COIN:
-                    // Add coin to inventory
-                    break;
-                case Item.ItemType.HEALTH:
-                    // Add health to player
-                    AdjustHitPoints(hitObject.quantity);
-                    break;
-            }
+                bool shouldDisappear = false;
 
-            collision.gameObject.SetActive(false);
+                switch(hitObject.itemType)
+                {
+                    case Item.ItemType.COIN:
+                        shouldDisappear = true;
+                        // Add coin to inventory
+                        break;
+                    case Item.ItemType.HEALTH:
+                        // Add health to player
+                        shouldDisappear =  AdjustHitPoints(hitObject.quantity);
+                        break;
+                }
+
+                if (shouldDisappear) collision.gameObject.SetActive(false);
+
                 
             }
 
         }
     }
 
-    public void AdjustHitPoints(int amount)
+    public bool AdjustHitPoints(int amount)
     {
-        hitPoints += amount;
-        if (hitPoints > maxHitPoints)
+        if(hitPoints.value < maxHitPoints)
         {
-            hitPoints = maxHitPoints;
+            hitPoints.value += amount;
+            if(hitPoints.value > maxHitPoints)
+            {
+                hitPoints.value = maxHitPoints;
+                print("Player hit points: " + hitPoints);
+            }
+
+            return true;
         }
 
-        print("Player hit points: " + hitPoints);
+        return false;
+
+
+    }
+
+    public override IEnumerator DamageCharacter(float damage, float interval)
+    {
+        while (true)
+        {
+
+            hitPoints.value -= damage;
+            if (hitPoints.value <= float.Epsilon)
+            {
+                KillCharacter();
+                break;
+            }
+            if (interval > float.Epsilon)
+            {
+                yield return new WaitForSeconds(interval);
+
+            }
+            else
+            {
+                break;
+            }
+
+        }
+    }
+
+    public override void KillCharacter()
+    {
+        base.KillCharacter();
+
+        Destroy(healthBar.gameObject);
+    }
+
+    public override void ResetCharacter()
+    {
+        healthBar = Instantiate(healthBarPrefab);
+        healthBar.character = this;
+        hitPoints.value = startingHitPoints;
+    }
+
+    private void OnEnable()
+    {
+        ResetCharacter();
     }
 }
