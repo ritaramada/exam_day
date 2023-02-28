@@ -8,6 +8,9 @@ public class EnemyBasicPathing : MonoBehaviour
     SpriteRenderer renderer;
     public float speed = 5.0f;
     Coroutine moveCoroutine;
+
+    public Vector2 directionVector;
+    public float directionAngle;
     private Vector2 playerPosition;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,10 @@ public class EnemyBasicPathing : MonoBehaviour
             playerPosition = GameObject.FindWithTag("Player").transform.position;
             Vector2 direction = playerPosition - body.position;
             direction.Normalize();
+
+            directionVector = direction;
+            directionAngle =  Mathf.Atan2(direction[1], direction[0]) * Mathf.Rad2Deg;
+
             body.velocity = direction * speed;
 
             //If player changes direction, flip sprite in sprite renderer component

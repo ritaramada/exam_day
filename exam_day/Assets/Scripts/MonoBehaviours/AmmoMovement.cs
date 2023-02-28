@@ -20,12 +20,12 @@ public class AmmoMovement : MonoBehaviour
 
         while(percentComplete < 1.0f){
             percentComplete += Time.deltaTime/ duration;
-            print(percentComplete);
             transform.position = Vector3.Lerp(startPosition, destination, percentComplete);
 
 
             yield return null;
             if(gameObject.activeSelf == false){
+                gameObject.transform.rotation = Quaternion.identity;
                 yield break;
             }
         }

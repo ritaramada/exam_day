@@ -7,13 +7,14 @@ public class Player : Character
 
     public HitPoints hitPoints;
 
-    public PlayerDirection playerDirection;
+    public PlayerMovement playerMovement;
     public HealthBar healthBarPrefab;
     HealthBar healthBar;
 
     public void Start()
     {
         hitPoints.value = startingHitPoints;
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -101,9 +102,6 @@ public class Player : Character
         healthBar.character = this;
         hitPoints.value = startingHitPoints;
 
-        // Reset player direction to [1,0]
-        playerDirection.directionVector = Vector2.right;
-        playerDirection.directionAngle = 0.0f;
     }
 
     private void OnEnable()

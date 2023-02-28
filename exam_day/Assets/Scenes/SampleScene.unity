@@ -133,10 +133,10 @@ PrefabInstance:
     - target: {fileID: 4491406865232192819, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: prefabToSpawn
       value: 
-      objectReference: {fileID: 7536040426035192483, guid: b187c659ae02b5744acd431974826254, type: 3}
+      objectReference: {fileID: 7813238759971534085, guid: cf6e709dccf909a43bdecaf7e23dc371, type: 3}
     - target: {fileID: 4491406865232192819, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: repeatInterval
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6446220978887975885, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: m_Icon
