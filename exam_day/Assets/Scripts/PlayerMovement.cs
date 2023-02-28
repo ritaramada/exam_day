@@ -8,10 +8,11 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer renderer;
     Animator animator;
 
-
     float horizontal;
     float vertical;
     float moveLimiter = 0.7f;
+    
+    public PlayerDirection playerDirection;
 
     string animationState = "AnimationState";
 
@@ -72,9 +73,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal != 0 || vertical != 0){
             animator.SetInteger(animationState, (int)PlayerState.Walking);
+
+            // Calculate the direction angle in degrees of the direction vector and (1,0)
+            playerDirection.directionAngle = Mathf.Atan2(vertical, horizontal) * Mathf.Rad2Deg;
+            playerDirection.directionVector = new Vector2(horizontal, vertical);
+
         } else {
             animator.SetInteger(animationState, (int)PlayerState.Idle);
         }
+
+
     }
 
 }

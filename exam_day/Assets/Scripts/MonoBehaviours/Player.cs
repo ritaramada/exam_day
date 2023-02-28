@@ -6,6 +6,8 @@ public class Player : Character
 {
 
     public HitPoints hitPoints;
+
+    public PlayerDirection playerDirection;
     public HealthBar healthBarPrefab;
     HealthBar healthBar;
 
@@ -98,6 +100,10 @@ public class Player : Character
         healthBar = Instantiate(healthBarPrefab);
         healthBar.character = this;
         hitPoints.value = startingHitPoints;
+
+        // Reset player direction to [1,0]
+        playerDirection.directionVector = Vector2.right;
+        playerDirection.directionAngle = 0.0f;
     }
 
     private void OnEnable()

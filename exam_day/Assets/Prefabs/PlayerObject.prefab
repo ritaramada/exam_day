@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3182290810355795819}
   - component: {fileID: -6550065549348297364}
   - component: {fileID: 3182290810355795816}
+  - component: {fileID: 3430307895193669264}
   m_Layer: 8
   m_Name: PlayerObject
   m_TagString: Player
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bbaa643d64f16468d05c630555dfa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDirection: {fileID: 11400000, guid: 12891629a8302834981943fe7db09edc, type: 2}
   runSpeed: 5
 --- !u!114 &-6550065549348297364
 MonoBehaviour:
@@ -161,9 +163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6adbe9709cd25b4a8b2334560c10804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: {fileID: 11400000, guid: ff0497dbee72bda4aa3d4d4618c73268, type: 2}
   startingHitPoints: 6
   maxHitPoints: 10
+  hitPoints: {fileID: 11400000, guid: ff0497dbee72bda4aa3d4d4618c73268, type: 2}
+  playerDirection: {fileID: 11400000, guid: 12891629a8302834981943fe7db09edc, type: 2}
   healthBarPrefab: {fileID: -1852572390706233309, guid: 54b91b1b0ad9f0a4c82306a1fa273663, type: 3}
 --- !u!95 &3182290810355795816
 Animator:
@@ -185,3 +188,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3430307895193669264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3182290810355795809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca79646c8439b34c9a24e968cc1acd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoPrefab: {fileID: 4578267519917794458, guid: 41fd50d1544029b4cbc6fc2c75753c82, type: 3}
+  playerDirection: {fileID: 11400000, guid: 12891629a8302834981943fe7db09edc, type: 2}
+  poolSize: 10
+  weaponRange: 10
+  weaponVelocity: 3
