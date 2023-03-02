@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3182290810355795819}
   - component: {fileID: -6550065549348297364}
   - component: {fileID: 3182290810355795816}
+  - component: {fileID: 3430307895193669264}
   m_Layer: 8
   m_Name: PlayerObject
   m_TagString: Player
@@ -29,14 +30,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3182290810355795809}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0027750933, w: 0.9999962}
   m_LocalPosition: {x: -4.99, y: 0.14, z: 0}
   m_LocalScale: {x: 2.0039, y: 2.0039, z: 2.0039}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.318}
 --- !u!50 &3182290810355795823
 Rigidbody2D:
   serializedVersion: 4
@@ -99,7 +100,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 95841941, guid: 7d725fec3d27dab45b519a3dfff974d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd11be8c0d416e64f8831990e193bd92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,18 +124,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0022248179, y: 0.0011124387}
+  m_Offset: {x: -0.0031775832, y: -0.059928752}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.19, y: 0.37}
+    oldSize: {x: 0.41, y: 0.61}
     newSize: {x: 0.28, y: 0.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20411178, y: 0.3887787}
+  m_Size: {x: 0.37099642, y: 0.42049903}
   m_EdgeRadius: 0
 --- !u!114 &3182290810355795819
 MonoBehaviour:
@@ -148,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bbaa643d64f16468d05c630555dfa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  directionAngle: 0
+  directionVector: {x: 0, y: 1}
   runSpeed: 5
 --- !u!114 &-6550065549348297364
 MonoBehaviour:
@@ -161,9 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6adbe9709cd25b4a8b2334560c10804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: {fileID: 11400000, guid: ff0497dbee72bda4aa3d4d4618c73268, type: 2}
   startingHitPoints: 6
   maxHitPoints: 10
+  hitPoints: {fileID: 11400000, guid: ff0497dbee72bda4aa3d4d4618c73268, type: 2}
+  playerMovement: {fileID: 0}
   healthBarPrefab: {fileID: -1852572390706233309, guid: 54b91b1b0ad9f0a4c82306a1fa273663, type: 3}
 --- !u!95 &3182290810355795816
 Animator:
@@ -185,3 +189,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3430307895193669264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3182290810355795809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca79646c8439b34c9a24e968cc1acd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoPrefab: {fileID: 4578267519917794458, guid: 41fd50d1544029b4cbc6fc2c75753c82, type: 3}
+  poolSize: 10
+  weaponRange: 10
+  weaponFireRate: 3
+  weaponVelocity: 3

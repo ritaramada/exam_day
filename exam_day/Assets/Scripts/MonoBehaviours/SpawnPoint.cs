@@ -8,6 +8,36 @@ public class SpawnPoint : MonoBehaviour
     public GameObject prefabToSpawn;
     public float repeatInterval;
 
+    public int poolSize = 2;
+
+    static Dictionary<string, List<GameObject>> objectPool;
+
+    void Awake(){
+        if(objectPool == null){
+            objectPool = new Dictionary<string, List<GameObject>>();
+            Debug.Log("Object pool created for the first time");
+        }
+
+        if(objectPool.ContainsKey(prefabToSpawn.name) == false){
+            Debug.Log("Object pool created for" + prefabToSpawn.name );
+            objectPool.Add(prefabToSpawn.name, new List<GameObject>());
+            for(int i = 0; i < poolSize; i++){
+                GameObject newObject = Instantiate(prefabToSpawn);
+                newObject.SetActive(false);
+                objectPool[prefabToSpawn.name].Add(newObject);
+            }
+        }else{
+            Debug.Log("Object pool already exists");
+            if(objectPool[prefabToSpawn.name].Count < poolSize){
+                for(int i = 0; i < poolSize - objectPool[prefabToSpawn.name].Count; i++){
+                    GameObject newObject = Instantiate(prefabToSpawn);
+                    newObject.SetActive(false);
+                    objectPool[prefabToSpawn.name].Add(newObject);
+                }
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +49,19 @@ public class SpawnPoint : MonoBehaviour
     public GameObject SpawnObject(){
         
         if(prefabToSpawn != null){
-            GameObject newObject = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+            foreach (GameObject obj in objectPool[prefabToSpawn.name]){
+                if(obj.activeSelf == false){
+                    obj.transform.position = transform.position;
+                    obj.SetActive(true);
+                    return obj;
+                }
+            }
+
+            GameObject newObject = Instantiate(prefabToSpawn);
+            newObject.transform.position = transform.position;
+            objectPool[prefabToSpawn.name].Add(newObject);
             return newObject;
+
         }
         else return null;
     }

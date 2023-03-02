@@ -8,14 +8,19 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer renderer;
     Animator animator;
 
-
     float horizontal;
     float vertical;
     float moveLimiter = 0.7f;
 
+    private Vector2 lastDirection = Vector2.down;
+
+    public float directionAngle = 0.0f;
+    public Vector2 directionVector = Vector2.down;
     string animationState = "AnimationState";
 
     public float runSpeed = 10.0f;
+
+    private float rotationSpeed = 13000.0f;
 
     enum PlayerState
     {
@@ -32,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         UpdateState();
     }
 
@@ -54,17 +58,32 @@ public class PlayerMovement : MonoBehaviour
             vertical *= moveLimiter;
         } 
 
-        body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        if(horizontal != 0 || vertical != 0){
+            lastDirection = new Vector2(horizontal, vertical);
+        }
 
-        //If player changes direction, flip sprite in sprite renderer component
-        if (horizontal > 0)
-        {
-            renderer.flipX = false;
+
+        Vector2 direction = new Vector2(horizontal, vertical);
+        Quaternion targetRotation;
+        if(horizontal == 0 && vertical == 0){
+            targetRotation = Quaternion.LookRotation(transform.forward, lastDirection);
+        }else{
+            targetRotation = Quaternion.LookRotation(transform.forward, direction);
         }
-        else if (horizontal < 0)
+        
+        Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        body.SetRotation(rotation);
+
+        if (direction == Vector2.zero)
         {
-            renderer.flipX = true;
+            body.velocity = Vector2.zero;
         }
+        else
+        {
+            body.velocity = transform.up * runSpeed;
+        }
+
 
     }
 
@@ -72,9 +91,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal != 0 || vertical != 0){
             animator.SetInteger(animationState, (int)PlayerState.Walking);
+
+            // Calculate the direction angle in degrees of the direction vector and (1,0)
+            directionAngle = Mathf.Atan2(vertical, horizontal) * Mathf.Rad2Deg;
+            directionVector = new Vector2(horizontal, vertical);
+
         } else {
             animator.SetInteger(animationState, (int)PlayerState.Idle);
         }
+
+
     }
 
 }

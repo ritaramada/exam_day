@@ -18,7 +18,6 @@ public class CameraManager : MonoBehaviour
         }
 
         GameObject vCamGameObject = GameObject.FindWithTag("VirtualCamera");
-        print(vCamGameObject);
         virtualCamera = vCamGameObject.GetComponent<CinemachineVirtualCamera>();
 
     }
