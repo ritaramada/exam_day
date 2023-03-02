@@ -204,4 +204,4 @@ MonoBehaviour:
   poolSize: 10
   weaponRange: 5
   weaponFireRate: 1
-  weaponVelocity: 1
+  weaponVelocity: 1.5
