@@ -5,10 +5,14 @@ using UnityEngine;
 public class Enemy : Character
 {
     float hitPoints;
+    EnemyBasicPathing pathing;
 
     public int damageStrength;
     Coroutine damageCoroutine;
 
+    void Awake(){
+        pathing = GetComponent<EnemyBasicPathing>();
+    }
     public override IEnumerator DamageCharacter(float damage, float interval)
     {
         while(true){
@@ -66,6 +70,8 @@ public class Enemy : Character
     public override void ResetCharacter()
     {
         hitPoints = startingHitPoints;
+        pathing.ResetPathing();
+
     }
     
 }

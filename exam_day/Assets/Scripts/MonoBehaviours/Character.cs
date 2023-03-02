@@ -8,7 +8,7 @@ public abstract class Character : MonoBehaviour
     public float startingHitPoints;
     public float maxHitPoints;
     public virtual void KillCharacter(){
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     } 
 
     /**

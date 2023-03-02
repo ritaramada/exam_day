@@ -5,10 +5,12 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public GameObject ammoPrefab;
-    private List<GameObject> ammoPool;
+    static Dictionary<string, List<GameObject>> ammoPool;
     public int poolSize;
     public float weaponRange = 5.0f;
     public float weaponFireRate = 3;
+
+    private GameObject lastAmmo = null;
 
     PlayerMovement playerDirection;
 
@@ -21,22 +23,40 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
 
     void Awake(){
-     
         if(ammoPool == null){
-            ammoPool = new List<GameObject>();
+            ammoPool = new Dictionary<string, List<GameObject>>();
+            Debug.Log("Ammo pool created for the first time");
         }
 
-        for(int i = 0; i < poolSize; i++){
-            print("Creating ammo; pool size:" + ammoPool.Count);
-            GameObject ammo = Instantiate(ammoPrefab);
-            ammo.SetActive(false);
-            ammoPool.Add(ammo);
+        if(ammoPool.ContainsKey(ammoPrefab.name) == false){
+            Debug.Log("Ammo pool created for" + ammoPrefab.name );
+            ammoPool.Add(ammoPrefab.name, new List<GameObject>());
+            for(int i = 0; i < poolSize; i++){
+                GameObject ammo = Instantiate(ammoPrefab);
+                ammo.SetActive(false);
+                ammoPool[ammoPrefab.name].Add(ammo);
+            }
+        }else{
+            Debug.Log("Ammo pool already exists");
+            if(ammoPool[ammoPrefab.name].Count < poolSize){
+                for(int i = 0; i < poolSize - ammoPool[ammoPrefab.name].Count; i++){
+                    GameObject ammo = Instantiate(ammoPrefab);
+                    ammo.SetActive(false);
+                    ammoPool[ammoPrefab.name].Add(ammo);
+                }
+            }
         }
+
         
     }
     void Start()
     {
-        //Verify if object is of tag Enemy
+
+    }
+
+    private void OnEnable(){
+        Debug.Log("Weapon script enabled");
+             //Verify if object is of tag Enemy
         if(gameObject.tag == "Player"){
             playerDirection = GetComponent<PlayerMovement>();
             if(playerDirection == null) return;
@@ -84,7 +104,8 @@ public class Weapon : MonoBehaviour
 
     GameObject SpawnAmmo(Vector3 location)
     {
-        foreach (GameObject ammo in ammoPool)
+
+        foreach (GameObject ammo in ammoPool[ammoPrefab.name])
         {
 
             if(ammo.activeSelf == false){
@@ -101,6 +122,7 @@ public class Weapon : MonoBehaviour
     void FireAmmo(){
         //Spawn a bullet at the player's position
         GameObject ammo = SpawnAmmo(transform.position);
+        lastAmmo = ammo;
         if(ammo == null) return;
 
         //Rotate ammo to face the direction of the player given degree angle
@@ -126,13 +148,26 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator PeriodicFire(){
         while(gameObject.activeSelf == true){
+            Debug.Log("Firing");
             FireAmmo();
             yield return new WaitForSeconds(weaponFireRate);
         }
     }
 
+    private void OnDisable(){
+        StopAllCoroutines();
+
+        if(lastAmmo != null){
+            AmmoMovement ammoMovement = lastAmmo.GetComponent<AmmoMovement>();
+            if(ammoMovement == null) return;
+            ammoMovement.StopAllCoroutines();
+            lastAmmo.SetActive(false);
+            lastAmmo.transform.rotation = Quaternion.identity;
+        }
+
+    }
+
 
     void OnDestroy(){
-        ammoPool = null;
     }
 }
