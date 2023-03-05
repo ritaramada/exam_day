@@ -25,11 +25,9 @@ public class Weapon : MonoBehaviour
     void Awake(){
         if(ammoPool == null){
             ammoPool = new Dictionary<string, List<GameObject>>();
-            Debug.Log("Ammo pool created for the first time");
         }
 
         if(ammoPool.ContainsKey(ammoPrefab.name) == false){
-            Debug.Log("Ammo pool created for" + ammoPrefab.name );
             ammoPool.Add(ammoPrefab.name, new List<GameObject>());
             for(int i = 0; i < poolSize; i++){
                 GameObject ammo = Instantiate(ammoPrefab);
@@ -37,7 +35,6 @@ public class Weapon : MonoBehaviour
                 ammoPool[ammoPrefab.name].Add(ammo);
             }
         }else{
-            Debug.Log("Ammo pool already exists");
             if(ammoPool[ammoPrefab.name].Count < poolSize){
                 for(int i = 0; i < poolSize - ammoPool[ammoPrefab.name].Count; i++){
                     GameObject ammo = Instantiate(ammoPrefab);
@@ -55,7 +52,6 @@ public class Weapon : MonoBehaviour
     }
 
     private void OnEnable(){
-        Debug.Log("Weapon script enabled");
              //Verify if object is of tag Enemy
         if(gameObject.tag == "Player"){
             playerDirection = GetComponent<PlayerMovement>();
@@ -148,7 +144,6 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator PeriodicFire(){
         while(gameObject.activeSelf == true){
-            Debug.Log("Firing");
             FireAmmo();
             yield return new WaitForSeconds(weaponFireRate);
         }

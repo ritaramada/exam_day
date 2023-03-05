@@ -30,7 +30,8 @@ public class Player : Character
                 {
                     case Item.ItemType.COIN:
                         shouldDisappear = true;
-                        // Add coin to inventory
+                        
+
                         break;
                     case Item.ItemType.HEALTH:
                         // Add health to player

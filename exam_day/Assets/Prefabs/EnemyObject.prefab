@@ -186,4 +186,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHitPoints: 10
   maxHitPoints: 10
+  coinPrefab: {fileID: 724900200850277752, guid: 7abf1b17ecfb72641aee3f717dfad19b, type: 3}
+  powerUp1Prefab: {fileID: 0}
+  powerUp2Prefab: {fileID: 0}
+  coinDropChance: 50
+  powerUp1DropChance: 20
+  powerUp2DropChance: 10
+  poolSize: 10
   damageStrength: 1

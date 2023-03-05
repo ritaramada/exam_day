@@ -15,11 +15,9 @@ public class SpawnPoint : MonoBehaviour
     void Awake(){
         if(objectPool == null){
             objectPool = new Dictionary<string, List<GameObject>>();
-            Debug.Log("Object pool created for the first time");
         }
 
         if(objectPool.ContainsKey(prefabToSpawn.name) == false){
-            Debug.Log("Object pool created for" + prefabToSpawn.name );
             objectPool.Add(prefabToSpawn.name, new List<GameObject>());
             for(int i = 0; i < poolSize; i++){
                 GameObject newObject = Instantiate(prefabToSpawn);
@@ -27,7 +25,6 @@ public class SpawnPoint : MonoBehaviour
                 objectPool[prefabToSpawn.name].Add(newObject);
             }
         }else{
-            Debug.Log("Object pool already exists");
             if(objectPool[prefabToSpawn.name].Count < poolSize){
                 for(int i = 0; i < poolSize - objectPool[prefabToSpawn.name].Count; i++){
                     GameObject newObject = Instantiate(prefabToSpawn);
