@@ -19,6 +19,14 @@ public class GameManager : MonoBehaviour
             sharedInstance = this;
         }
 
+
+        scorePoints.multiplier = 1;
+        scorePoints.score = 0;
+
+        gameTime.currentTime = 0;
+        gameTime.timeScale = 1;
+        gameTime.isPaused = false;
+
     }
 
     // Start is called before the first frame update

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Player : Character
 {
-
     public HitPoints hitPoints;
-
+    public CoinCounter coinCollector;
     public PlayerMovement playerMovement;
-    public HealthBar healthBarPrefab;
+    public GameObject playerUIPrefab;
+    GameObject playerUI;
     HealthBar healthBar;
 
     public void Start()
     {
         hitPoints.value = startingHitPoints;
         playerMovement = GetComponent<PlayerMovement>();
+
+        coinCollector.value = 0;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +32,7 @@ public class Player : Character
                 {
                     case Item.ItemType.COIN:
                         shouldDisappear = true;
-                        
+                        coinCollector.value += 1;
 
                         break;
                     case Item.ItemType.HEALTH:
@@ -40,7 +42,6 @@ public class Player : Character
                 }
 
                 if (shouldDisappear) collision.gameObject.SetActive(false);
-
                 
             }
 
@@ -99,10 +100,18 @@ public class Player : Character
 
     public override void ResetCharacter()
     {
-        healthBar = Instantiate(healthBarPrefab);
-        healthBar.character = this;
+        StartUI();
         hitPoints.value = startingHitPoints;
 
+    }
+
+    void StartUI()
+    {
+        playerUI = Instantiate(playerUIPrefab);
+        healthBar = playerUI.GetComponent<HealthBar>();
+
+
+        healthBar.character = this;
     }
 
     private void OnEnable()

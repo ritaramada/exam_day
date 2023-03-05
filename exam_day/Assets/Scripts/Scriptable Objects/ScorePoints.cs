@@ -6,6 +6,5 @@ public class ScorePoints : ScriptableObject
     public int score=0;
     public int multiplier=0;
     
-    
 }
 
