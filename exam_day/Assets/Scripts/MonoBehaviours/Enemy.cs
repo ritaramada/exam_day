@@ -48,10 +48,12 @@ public class Enemy : Character
             if(!objectPool.ContainsKey(prefab.name)){
                 objectPool.Add(prefab.name, new List<GameObject>());
             }
-            for(int i = 0; i < poolSize; i++){
-                GameObject item = Instantiate(prefab);
-                item.SetActive(false);
-                objectPool[prefab.name].Add(item);
+            if(objectPool[prefab.name].Count < poolSize) {
+                for(int i = objectPool[prefab.name].Count; i < poolSize; i++){
+                    GameObject item = Instantiate(prefab);
+                    item.SetActive(false);
+                    objectPool[prefab.name].Add(item);
+                }
             }
         }
     }
