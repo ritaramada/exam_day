@@ -24,6 +24,7 @@ public class SpawnConsumableRules : MonoBehaviour
     IEnumerator SpawnConsumableAfterTime(float time){
         yield return new WaitForSeconds(time);
         SpawnConsumable();
+        yield break;
     }
     
 
