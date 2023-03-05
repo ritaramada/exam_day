@@ -133,6 +133,9 @@ public class Player : Character
             case "invisibility cloak":
                 activePowerUp = gameObject.AddComponent<InvisibilityCloak>();
                 break;
+            case "thorny armor":
+                activePowerUp = gameObject.AddComponent<ThornyArmor>();
+                break;
             default:
                 break;
         }

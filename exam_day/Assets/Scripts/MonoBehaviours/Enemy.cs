@@ -60,6 +60,7 @@ public class Enemy : Character
     public override IEnumerator DamageCharacter(float damage, float interval)
     {
         while(true){
+            
 
             hitPoints -= damage;
             if(hitPoints <= float.Epsilon){
