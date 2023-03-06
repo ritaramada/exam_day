@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3555585388506831143}
   - component: {fileID: 4934242092088515360}
   - component: {fileID: 29715957822045616}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: EnemyAmmoObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageInflicted: 1
+  damageBonus: 0
 --- !u!114 &4934242092088515360
 MonoBehaviour:
   m_ObjectHideFlags: 0

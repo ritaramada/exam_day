@@ -57,7 +57,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &7813238759971534083
 SpriteRenderer:
@@ -209,7 +209,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoPrefab: {fileID: 6055754196508493646, guid: bf075105c8de01348b3a34e74b6af17b, type: 3}
+  coinCounter: {fileID: 0}
   poolSize: 10
+  weaponUpgrades: {fileID: 0}
   weaponRange: 5
   weaponFireRate: 1
   weaponVelocity: 1.5
+  baseWeaponVelocity: 0
