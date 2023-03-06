@@ -28,7 +28,10 @@ public class EnemyBasicPathing : MonoBehaviour
             
             if(GameObject.FindWithTag("Player") == null) yield return null;
             if(GameObject.FindWithTag("Player") == null) yield break;
-            playerPosition = GameObject.FindWithTag("Player").transform.position;
+
+            Player player= GameObject.FindWithTag("Player").GetComponent<Player>();
+            playerPosition = player.currentPos;
+
             Vector2 direction = playerPosition - body.position;
             direction.Normalize();
 

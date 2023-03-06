@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cfe51a5e46b1c1429e980def677a5e5, type: 3}
-  m_Name: Player Direction
+  m_Script: {fileID: 11500000, guid: ed682aafd5efb40469bf56eee85b5c2d, type: 3}
+  m_Name: Thorny Armor
   m_EditorClassIdentifier: 
-  directionAngle: 0
-  directionVector: {x: 1, y: 0}
+  objectName: thorny armor
+  sprite: {fileID: -1933323692, guid: 043a78661edc19547b66611192624489, type: 3}
+  quantity: 0
+  stackable: 0
+  itemType: 2

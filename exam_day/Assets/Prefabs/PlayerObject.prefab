@@ -167,8 +167,11 @@ MonoBehaviour:
   startingHitPoints: 6
   maxHitPoints: 10
   hitPoints: {fileID: 11400000, guid: ff0497dbee72bda4aa3d4d4618c73268, type: 2}
+  coinCollector: {fileID: 11400000, guid: 5812584641944e6498d0ea32a124f619, type: 2}
   playerMovement: {fileID: 0}
-  healthBarPrefab: {fileID: -1852572390706233309, guid: 54b91b1b0ad9f0a4c82306a1fa273663, type: 3}
+  playerUIPrefab: {fileID: 3141967389006561906, guid: 052ed535c8b03534db9440ee26674d32, type: 3}
+  currentPos: {x: 0, y: 0}
+  activePowerUp: {fileID: 0}
 --- !u!95 &3182290810355795816
 Animator:
   serializedVersion: 5
@@ -202,7 +205,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoPrefab: {fileID: 4578267519917794458, guid: 41fd50d1544029b4cbc6fc2c75753c82, type: 3}
+  coinCounter: {fileID: 11400000, guid: 5812584641944e6498d0ea32a124f619, type: 2}
   poolSize: 10
+  weaponUpgrades: {fileID: 11400000, guid: fd70219a5f5beb24194f9846bd44e494, type: 2}
   weaponRange: 10
   weaponFireRate: 3
   weaponVelocity: 3
+  baseWeaponVelocity: 0

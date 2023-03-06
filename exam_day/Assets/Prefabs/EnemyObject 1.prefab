@@ -187,6 +187,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHitPoints: 10
   maxHitPoints: 10
+  coinPrefab: {fileID: 724900200850277752, guid: 7abf1b17ecfb72641aee3f717dfad19b, type: 3}
+  powerUp1Prefab: {fileID: 2426323641161866278, guid: bcb6fddc41a900e4d9e0dcd699067655, type: 3}
+  powerUp2Prefab: {fileID: 4261845386641455344, guid: e0f46ff5ecb25c040a7be4e207e276b0, type: 3}
+  coinDropChance: 60
+  powerUp1DropChance: 20
+  powerUp2DropChance: 10
+  poolSize: 10
+  pointsGiven: 50
   damageStrength: 1
 --- !u!114 &358976902410190247
 MonoBehaviour:
@@ -201,7 +209,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoPrefab: {fileID: 6055754196508493646, guid: bf075105c8de01348b3a34e74b6af17b, type: 3}
+  coinCounter: {fileID: 0}
   poolSize: 10
+  weaponUpgrades: {fileID: 0}
   weaponRange: 5
   weaponFireRate: 1
   weaponVelocity: 1.5
+  baseWeaponVelocity: 0

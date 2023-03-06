@@ -16,7 +16,8 @@ public class Item : ScriptableObject {
     public enum ItemType
     {
         COIN,
-        HEALTH
+        HEALTH,
+        POWER_UP
     }
 
     public ItemType itemType;

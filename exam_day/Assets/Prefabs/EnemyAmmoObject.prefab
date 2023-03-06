@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3555585388506831143}
   - component: {fileID: 4934242092088515360}
   - component: {fileID: 29715957822045616}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: EnemyAmmoObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 971946847, guid: 042a128aa44ac554c8a6aea44db6516d, type: 3}
+  m_Sprite: {fileID: -1689481459, guid: 043a78661edc19547b66611192624489, type: 3}
   m_Color: {r: 0.8207547, g: 0.0038714937, b: 0.0038714937, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageInflicted: 1
+  damageBonus: 0
 --- !u!114 &4934242092088515360
 MonoBehaviour:
   m_ObjectHideFlags: 0
