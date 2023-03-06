@@ -24,7 +24,7 @@ public class WeaponUpgrades : ScriptableObject
     public Dictionary<UpgradeType, int> upgradeCost = new Dictionary<UpgradeType, int>(){
         {UpgradeType.DAMAGE, 2},
         {UpgradeType.AMMO_SPEED, 2},
-        {UpgradeType.WEAPON_SPREAD, 3},
+        {UpgradeType.WEAPON_SPREAD, 1},
         {UpgradeType.WEAPON_EXPLOSIVE, 10}
     };
 

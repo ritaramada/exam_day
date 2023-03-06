@@ -100,10 +100,10 @@ public class Weapon : MonoBehaviour
                 UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
             }
             if(Input.GetKey(KeyCode.C)){
-                UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.WEAPON_SPREAD);
             }
             if(Input.GetKey(KeyCode.V)){
-                UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.WEAPON_EXPLOSIVE);
             }
         
 
@@ -143,7 +143,12 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        return null;
+        //If no ammo is available, create one, add to pool and return it
+        GameObject newAmmo = Instantiate(ammoPrefab);
+        newAmmo.transform.position = location;
+        ammoPool[ammoPrefab.name].Add(newAmmo);
+        return newAmmo;
+
 
     }
 
@@ -177,12 +182,43 @@ public class Weapon : MonoBehaviour
         StartCoroutine(ammoMovement.Travel(endPosition, travelDuration));
 
         if(gameObject.tag == "Player"){
-            int ammoAngle = 20;
-            for(int i = 0; i< weaponUpgrades.upgradeMax[WeaponUpgrades.UpgradeType.WEAPON_SPREAD]; i++){
-                //TODO Add extra bullets
+            int ammoAngle = 10;
+            for(int i = 0; i< weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.WEAPON_SPREAD]; i++){
+                FireAmmo(ammoAngle);
+                FireAmmo(-ammoAngle);
+                ammoAngle += 10;
             }
         }
 
+    }
+
+    void FireAmmo(int angle){
+        //Spawn a bullet at the player's position
+        GameObject ammo = SpawnAmmo(transform.position);
+        if(gameObject.tag == "Player"){
+            int damageBonus = weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE];
+            ammo.GetComponent<Ammo>().damageBonus = damageBonus;
+        }
+        lastAmmo = ammo;
+        if(ammo == null) return;
+
+        //Rotate ammo to face the direction of the player given degree angle
+        ammo.transform.Rotate(new Vector3(0, 0, 1), directionAngle + angle);
+        //From direction
+        directionVector.Normalize();
+        Vector3 direc = new Vector3(directionVector[0], directionVector[1], 0);
+
+        direc = Quaternion.Euler(0, 0, angle) * direc;
+        //Get the ammo movement component
+        AmmoMovement ammoMovement = ammo.GetComponent<AmmoMovement>();
+        if(ammoMovement == null) return;
+
+        //Calculate the ending position
+        Vector3 endPosition = transform.position + (direc * weaponRange);
+        float travelDuration = 1.0f / weaponVelocity;
+        //Start the coroutine
+
+        StartCoroutine(ammoMovement.Travel(endPosition, travelDuration));
     }
 
     private IEnumerator PeriodicFire(){
