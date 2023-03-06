@@ -93,16 +93,19 @@ public class Weapon : MonoBehaviour
                 FireAmmo();
             }
 
-            if(Input.GetKey(KeyCode.X)){
-                if(weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE] < weaponUpgrades.upgradeMax[WeaponUpgrades.UpgradeType.DAMAGE]){
-                    if(coinCounter.value >= weaponUpgrades.upgradeCost[WeaponUpgrades.UpgradeType.DAMAGE]*(weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE]+1))
-                    {
-                        weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE] += 1;
-                        coinCounter.value -= weaponUpgrades.upgradeCost[WeaponUpgrades.UpgradeType.DAMAGE]*weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE];
-                    }
-
-                }
+            if(Input.GetKey(KeyCode.Z)){
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.DAMAGE);
             }
+            if(Input.GetKey(KeyCode.X)){
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
+            }
+            if(Input.GetKey(KeyCode.C)){
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
+            }
+            if(Input.GetKey(KeyCode.V)){
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
+            }
+        
 
         }else if(gameObject.tag == "Enemy"){
 
@@ -115,6 +118,16 @@ public class Weapon : MonoBehaviour
             return;
         }
         
+    }
+
+    void UpgradeWeapon(WeaponUpgrades.UpgradeType upgrade){
+        if(weaponUpgrades.upgrades[upgrade] < weaponUpgrades.upgradeMax[upgrade]){
+            if(coinCounter.value >= weaponUpgrades.upgradeCost[upgrade]*(weaponUpgrades.upgrades[upgrade]+1))
+            {
+                weaponUpgrades.upgrades[upgrade] += 1;
+                coinCounter.value -= weaponUpgrades.upgradeCost[upgrade]*weaponUpgrades.upgrades[upgrade];
+            }
+        }
     }
 
     GameObject SpawnAmmo(Vector3 location)
@@ -162,6 +175,13 @@ public class Weapon : MonoBehaviour
         //Start the coroutine
 
         StartCoroutine(ammoMovement.Travel(endPosition, travelDuration));
+
+        if(gameObject.tag == "Player"){
+            int ammoAngle = 20;
+            for(int i = 0; i< weaponUpgrades.upgradeMax[WeaponUpgrades.UpgradeType.WEAPON_SPREAD]; i++){
+                //TODO Add extra bullets
+            }
+        }
 
     }
 
