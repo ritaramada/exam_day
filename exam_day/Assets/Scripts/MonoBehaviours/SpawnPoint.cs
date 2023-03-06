@@ -44,7 +44,6 @@ public class SpawnPoint : MonoBehaviour
     }
 
     public GameObject SpawnObject(){
-        Debug.Log("SpawnObject");
         
         if(prefabToSpawn != null){
             foreach (GameObject obj in objectPool[prefabToSpawn.name]){

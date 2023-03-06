@@ -5,8 +5,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public GameObject ammoPrefab;
+
+    public CoinCounter coinCounter;
     static Dictionary<string, List<GameObject>> ammoPool;
     public int poolSize;
+    public WeaponUpgrades weaponUpgrades;
     public float weaponRange = 5.0f;
     public float weaponFireRate = 3;
 
@@ -19,7 +22,10 @@ public class Weapon : MonoBehaviour
     Vector2 directionVector;
     float directionAngle;
 
-    public float weaponVelocity = 5.0f;
+    public float weaponVelocity = 3.0f;
+
+    [HideInInspector]
+    public float baseWeaponVelocity;
     // Start is called before the first frame update
 
     void Awake(){
@@ -48,7 +54,7 @@ public class Weapon : MonoBehaviour
     }
     void Start()
     {
-
+        baseWeaponVelocity = weaponVelocity;
     }
 
     private void OnEnable(){
@@ -81,8 +87,21 @@ public class Weapon : MonoBehaviour
             directionAngle = playerDirection.directionAngle;
             directionVector = playerDirection.directionVector;
 
+            weaponVelocity = baseWeaponVelocity + weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.AMMO_SPEED] * 0.5f;
+
             if(Input.GetKeyDown(KeyCode.Space)){
                 FireAmmo();
+            }
+
+            if(Input.GetKey(KeyCode.X)){
+                if(weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE] < weaponUpgrades.upgradeMax[WeaponUpgrades.UpgradeType.DAMAGE]){
+                    if(coinCounter.value >= weaponUpgrades.upgradeCost[WeaponUpgrades.UpgradeType.DAMAGE]*(weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE]+1))
+                    {
+                        weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE] += 1;
+                        coinCounter.value -= weaponUpgrades.upgradeCost[WeaponUpgrades.UpgradeType.DAMAGE]*weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE];
+                    }
+
+                }
             }
 
         }else if(gameObject.tag == "Enemy"){
@@ -118,6 +137,10 @@ public class Weapon : MonoBehaviour
     void FireAmmo(){
         //Spawn a bullet at the player's position
         GameObject ammo = SpawnAmmo(transform.position);
+        if(gameObject.tag == "Player"){
+            int damageBonus = weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE];
+            ammo.GetComponent<Ammo>().damageBonus = damageBonus;
+        }
         lastAmmo = ammo;
         if(ammo == null) return;
 
@@ -159,6 +182,15 @@ public class Weapon : MonoBehaviour
             lastAmmo.SetActive(false);
             lastAmmo.transform.rotation = Quaternion.identity;
         }
+
+        if(gameObject.tag == "Player"){
+            foreach ( WeaponUpgrades.UpgradeType upgrade in System.Enum.GetValues(typeof(WeaponUpgrades.UpgradeType)) )
+            {
+                weaponUpgrades.upgrades[upgrade] = 0;
+            }
+
+        }
+        
 
     }
 

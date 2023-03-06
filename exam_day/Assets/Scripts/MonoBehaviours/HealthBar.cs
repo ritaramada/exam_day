@@ -23,7 +23,8 @@ public class HealthBar : MonoBehaviour
     [HideInInspector]
     float powerUpDuration = 10f;
     float lastTime = 0f;
-
+    
+    [HideInInspector]
     public Sprite powerUpIconSprite;
 
     void Start()

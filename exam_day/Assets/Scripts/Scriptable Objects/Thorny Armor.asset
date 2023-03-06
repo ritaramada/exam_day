@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed682aafd5efb40469bf56eee85b5c2d, type: 3}
   m_Name: Thorny Armor
   m_EditorClassIdentifier: 
-  objectName: 
-  sprite: {fileID: 0}
+  objectName: thorny armor
+  sprite: {fileID: -1933323692, guid: 043a78661edc19547b66611192624489, type: 3}
   quantity: 0
   stackable: 0
-  itemType: 0
+  itemType: 2

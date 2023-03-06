@@ -10,14 +10,14 @@ PrefabInstance:
     - target: {fileID: 4491406865232192819, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: prefabToSpawn
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5715484402004426887, guid: cc177e09f96d9cc4e9c829c997217279, type: 3}
     - target: {fileID: 4491406865232192819, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: repeatInterval
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6446220978887975885, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: m_Name
-      value: ConsumableSpawner Variant
+      value: ConsumableSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 8855513037017859854, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: m_RootOrder
@@ -25,11 +25,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8855513037017859854, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.68
+      value: -30.36
       objectReference: {fileID: 0}
     - target: {fileID: 8855513037017859854, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.88
+      value: 5.47
       objectReference: {fileID: 0}
     - target: {fileID: 8855513037017859854, guid: 90b627b3d218f894781cde478a27c055, type: 3}
       propertyPath: m_LocalPosition.z

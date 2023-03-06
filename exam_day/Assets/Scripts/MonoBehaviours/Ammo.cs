@@ -7,6 +7,9 @@ public class Ammo : MonoBehaviour
 
     public int damageInflicted = 10;
 
+    [HideInInspector]
+    public int damageBonus = 0;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -17,7 +20,7 @@ public class Ammo : MonoBehaviour
             {
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-                StartCoroutine(enemy.DamageCharacter(damageInflicted, 0.0f));
+                StartCoroutine(enemy.DamageCharacter(damageInflicted + damageBonus, 0.0f));
 
                 gameObject.SetActive(false);
             }
@@ -25,7 +28,7 @@ public class Ammo : MonoBehaviour
             {
                 Player player = collision.gameObject.GetComponent<Player>();
 
-                StartCoroutine(player.DamageCharacter(damageInflicted, 0.0f));
+                StartCoroutine(player.DamageCharacter(damageInflicted + damageBonus, 0.0f));
 
                 gameObject.SetActive(false);
 
