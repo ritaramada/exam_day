@@ -47,3 +47,4 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 0}
   repeatInterval: 10
   poolSize: 1
+  scorePoints: {fileID: 11400000, guid: 996148d2c1e263944914b6d727051dfb, type: 2}
