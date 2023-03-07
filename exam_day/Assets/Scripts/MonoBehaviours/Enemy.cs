@@ -25,6 +25,8 @@ public class Enemy : Character
     public int damageStrength;
     Coroutine damageCoroutine;
 
+    int currentLevel = 1;
+
     void Awake(){
         pathing = GetComponent<EnemyBasicPathing>();
 
@@ -41,6 +43,7 @@ public class Enemy : Character
     void Start(){
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        
     }
 
     private void FillPool(GameObject prefab){
@@ -114,7 +117,7 @@ public class Enemy : Character
 
     public override void ResetCharacter()
     {
-        hitPoints = startingHitPoints;
+        hitPoints = startingHitPoints + currentLevel*3;
         pathing.ResetPathing();
 
     }
@@ -175,5 +178,14 @@ public class Enemy : Character
         GivePoints();
 
     }
+
+    void Update(){
+        if(gameManagerScript!= null){
+            currentLevel = gameManagerScript.scorePoints.multiplier;
+        }
+    }
     
+    void OnDestroy(){
+        objectPool = null;
+    }
 }

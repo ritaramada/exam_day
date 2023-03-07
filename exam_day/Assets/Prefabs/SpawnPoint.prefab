@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6446220978887975885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.33369148, y: 0.3974081, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.993376, y: 0.993376, z: 0.993376}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,3 +47,4 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 0}
   repeatInterval: 10
   poolSize: 1
+  scorePoints: {fileID: 11400000, guid: 996148d2c1e263944914b6d727051dfb, type: 2}

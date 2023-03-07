@@ -252,5 +252,6 @@ public class Weapon : MonoBehaviour
 
 
     void OnDestroy(){
+        ammoPool = null;
     }
 }
