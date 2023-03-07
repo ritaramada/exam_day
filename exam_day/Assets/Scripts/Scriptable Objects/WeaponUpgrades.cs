@@ -25,14 +25,14 @@ public class WeaponUpgrades : ScriptableObject
         {UpgradeType.DAMAGE, 2},
         {UpgradeType.AMMO_SPEED, 2},
         {UpgradeType.WEAPON_SPREAD, 1},
-        {UpgradeType.WEAPON_EXPLOSIVE, 10}
+        {UpgradeType.WEAPON_EXPLOSIVE, 1}
     };
 
     public Dictionary<UpgradeType, int> upgradeMax = new Dictionary<UpgradeType, int>(){
         {UpgradeType.DAMAGE, 10},
         {UpgradeType.AMMO_SPEED, 10},
         {UpgradeType.WEAPON_SPREAD, 3},
-        {UpgradeType.WEAPON_EXPLOSIVE, 1}
+        {UpgradeType.WEAPON_EXPLOSIVE, 2}
     };
     
 }

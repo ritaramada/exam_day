@@ -209,9 +209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoPrefab: {fileID: 6055754196508493646, guid: bf075105c8de01348b3a34e74b6af17b, type: 3}
-  coinCounter: {fileID: 0}
+  coinCounter: {fileID: 11400000, guid: 5812584641944e6498d0ea32a124f619, type: 2}
   poolSize: 10
-  weaponUpgrades: {fileID: 0}
+  weaponUpgrades: {fileID: 11400000, guid: fd70219a5f5beb24194f9846bd44e494, type: 2}
   weaponRange: 5
   weaponFireRate: 1
   weaponVelocity: 1.5
