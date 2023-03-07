@@ -10,12 +10,19 @@ public class SpawnPoint : MonoBehaviour
 
     public int poolSize = 2;
 
+    int currentLevel = 1;
+
+    public ScorePoints scorePoints;
+
     static Dictionary<string, List<GameObject>> objectPool;
 
     void Awake(){
         if(objectPool == null){
             objectPool = new Dictionary<string, List<GameObject>>();
+            Debug.Log("Spawn Point Awake");
         }
+
+        
 
         if(objectPool.ContainsKey(prefabToSpawn.name) == false){
             objectPool.Add(prefabToSpawn.name, new List<GameObject>());
@@ -43,6 +50,8 @@ public class SpawnPoint : MonoBehaviour
         }
     }
 
+    
+
     public GameObject SpawnObject(){
         
         if(prefabToSpawn != null){
@@ -63,9 +72,22 @@ public class SpawnPoint : MonoBehaviour
         else return null;
     }
 
+    void OnDestroy(){
+        CancelInvoke();
+        objectPool = null;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(repeatInterval != 0){
+            if(currentLevel != scorePoints.multiplier){
+                currentLevel = scorePoints.multiplier;
+                repeatInterval = repeatInterval * 0.7f;
+                CancelInvoke();
+                InvokeRepeating("SpawnObject", 0, repeatInterval);
+            }
+        }      
         
     }
 }

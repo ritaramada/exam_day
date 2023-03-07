@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class GameManager : MonoBehaviour
     public SpawnPoint playerSpawnPoint;
     public CameraManager cameraManager;
 
+    GameObject player;
+
     void Awake(){
+        Debug.Log("Game Manager Awake");
         if(sharedInstance != null && sharedInstance != this){
             Destroy(this.gameObject);
         }else{
@@ -33,7 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetupScene();    
-        InvokeRepeating("UpdateScoreMultiplier", 0, waveDurationTime);
+        InvokeRepeating("UpdateScoreMultiplier", waveDurationTime, waveDurationTime);
 
     }
 
@@ -48,7 +52,7 @@ public class GameManager : MonoBehaviour
     public void SpawnPlayer(){
 
         if(playerSpawnPoint != null){
-            GameObject player = playerSpawnPoint.SpawnObject();
+            player = playerSpawnPoint.SpawnObject();
 
             cameraManager.virtualCamera.Follow = player.transform;
         }
@@ -58,6 +62,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         gameTime.currentTime = Time.time;
+        if(player!= null && player.active == false){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+
         
     }
 
@@ -96,4 +104,6 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
 
     }
+
+
 }
