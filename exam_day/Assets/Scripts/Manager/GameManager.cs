@@ -70,6 +70,14 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
 
+        if(isGameOver == true && Input.GetKeyDown(KeyCode.R)){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if(isGameOver == true && Input.GetKeyDown(KeyCode.M)){
+            SceneManager.LoadScene(0);
+        }
+
         
     }
 

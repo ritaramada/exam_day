@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBasicPathing : MonoBehaviour
 {
     Rigidbody2D body;
     SpriteRenderer renderer;
     public float speed = 5.0f;
+
+    private NavMeshAgent agent;
 
     public float rotationSpeed = 180.0f;
     Coroutine moveCoroutine;
@@ -19,6 +22,10 @@ public class EnemyBasicPathing : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
+        agent = GetComponent<NavMeshAgent>();
+
+        agent.updateUpAxis = false;
+        agent.updateRotation = false;
     }
 
     public IEnumerator Move(Rigidbody2D body, float speed)
@@ -26,8 +33,14 @@ public class EnemyBasicPathing : MonoBehaviour
         while (true)
         {
             
-            if(GameObject.FindWithTag("Player") == null) yield return null;
-            if(GameObject.FindWithTag("Player") == null) yield break;
+            
+            if(GameObject.FindWithTag("Player") == null){
+                yield return null;
+            }
+            if(GameObject.FindWithTag("GameOver")!= null){
+                Destroy(agent);
+                yield break;
+            }
 
             Player player= GameObject.FindWithTag("Player").GetComponent<Player>();
             playerPosition = player.currentPos;
@@ -43,7 +56,10 @@ public class EnemyBasicPathing : MonoBehaviour
                 yield return null;
             }
 
+
+
             // RayCast to check if there is a wall in the way, up, down and left
+            /*
             if(Physics2D.Raycast(body.position, direction, 5.0f, LayerMask.GetMask("Wall"))){
                 List<Vector2> possibleDirections = new List<Vector2>();
                 //Check if there is a wall to the left
@@ -77,12 +93,15 @@ public class EnemyBasicPathing : MonoBehaviour
                 direction = minAngleDirection;
     
             }
+            */
+            
 
 
             Quaternion targetRotation = Quaternion.LookRotation(transform.forward, direction);
             Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
             body.SetRotation(rotation);
+            /*
 
             if (direction == Vector2.zero)
             {
@@ -92,6 +111,9 @@ public class EnemyBasicPathing : MonoBehaviour
             {
                 body.velocity = transform.up * speed;
             }
+            */
+
+            agent.SetDestination(playerPosition);
 
             yield return new WaitForFixedUpdate();
         }
