@@ -93,16 +93,16 @@ public class Weapon : MonoBehaviour
                 FireAmmo();
             }
 
-            if(Input.GetKey(KeyCode.Z)){
+            if(Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Alpha1)){
                 UpgradeWeapon(WeaponUpgrades.UpgradeType.DAMAGE);
             }
-            if(Input.GetKey(KeyCode.X)){
+            if(Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Alpha2)){
                 UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
             }
-            if(Input.GetKey(KeyCode.C)){
+            if(Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Alpha3)){
                 UpgradeWeapon(WeaponUpgrades.UpgradeType.WEAPON_SPREAD);
             }
-            if(Input.GetKey(KeyCode.V)){
+            if(Input.GetKey(KeyCode.V)|| Input.GetKey(KeyCode.Alpha4)){
                 UpgradeWeapon(WeaponUpgrades.UpgradeType.WEAPON_EXPLOSIVE);
             }
         
@@ -156,7 +156,7 @@ public class Weapon : MonoBehaviour
         //Spawn a bullet at the player's position
         GameObject ammo = SpawnAmmo(transform.position);
         if(gameObject.tag == "Player"){
-            int damageBonus = weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE];
+            int damageBonus = weaponUpgrades.upgrades[WeaponUpgrades.UpgradeType.DAMAGE]*5;
             ammo.GetComponent<Ammo>().damageBonus = damageBonus;
         }
         lastAmmo = ammo;

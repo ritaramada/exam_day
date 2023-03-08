@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public SpawnPoint playerSpawnPoint;
     public CameraManager cameraManager;
 
+    public GameObject gameOverScreen;
+    bool isGameOver = false;
+
     GameObject player;
 
     void Awake(){
@@ -62,11 +65,25 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         gameTime.currentTime = Time.time;
-        if(player!= null && player.active == false){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        if(player!= null && player.active == false && isGameOver == false){
+            isGameOver = true;
+            EndGame();
+        }
+
+        if(isGameOver == true && Input.GetKeyDown(KeyCode.R)){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if(isGameOver == true && Input.GetKeyDown(KeyCode.M)){
+            SceneManager.LoadScene(0);
         }
 
         
+    }
+
+    void EndGame(){
+        Instantiate(gameOverScreen);
+        CancelInvoke("UpdateScoreMultiplier");
     }
 
     void PauseGame(){

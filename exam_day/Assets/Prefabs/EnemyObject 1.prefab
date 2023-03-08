@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7813238759971534140}
   - component: {fileID: 5052413318867384878}
   - component: {fileID: 358976902410190247}
+  - component: {fileID: -2013000340385824175}
   m_Layer: 10
   m_Name: EnemyObject 1
   m_TagString: Enemy
@@ -58,7 +59,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!212 &7813238759971534083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -212,7 +213,29 @@ MonoBehaviour:
   coinCounter: {fileID: 11400000, guid: 5812584641944e6498d0ea32a124f619, type: 2}
   poolSize: 10
   weaponUpgrades: {fileID: 11400000, guid: fd70219a5f5beb24194f9846bd44e494, type: 2}
-  weaponRange: 5
-  weaponFireRate: 1
+  weaponRange: 10
+  weaponFireRate: 3
   weaponVelocity: 1.5
   baseWeaponVelocity: 0
+--- !u!195 &-2013000340385824175
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7813238759971534085}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.22999999
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 0.6399999
+  m_BaseOffset: 0.2
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
