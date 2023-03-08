@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41efeee9ecfea5248addca3f20a193cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageInflicted: 3
+  damageInflicted: 5
   damageBonus: 0
   weaponUpgrades: {fileID: 11400000, guid: fd70219a5f5beb24194f9846bd44e494, type: 2}
   explosionPrefab: {fileID: 6922873092669960589, guid: 353a1103bcb8ad84980f1f7eaf8f19cc, type: 3}

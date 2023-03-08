@@ -213,8 +213,8 @@ MonoBehaviour:
   coinCounter: {fileID: 11400000, guid: 5812584641944e6498d0ea32a124f619, type: 2}
   poolSize: 10
   weaponUpgrades: {fileID: 11400000, guid: fd70219a5f5beb24194f9846bd44e494, type: 2}
-  weaponRange: 5
-  weaponFireRate: 1
+  weaponRange: 10
+  weaponFireRate: 3
   weaponVelocity: 1.5
   baseWeaponVelocity: 0
 --- !u!195 &-2013000340385824175
@@ -227,7 +227,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.22999999
-  m_Speed: 2.9
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

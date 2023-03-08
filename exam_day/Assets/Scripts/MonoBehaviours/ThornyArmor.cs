@@ -34,7 +34,7 @@ public class ThornyArmor : PowerUp
     public void OnCollisionEnter2D(Collision2D other) {
         
         if(other.gameObject.tag == "Enemy"){
-            StartCoroutine(other.gameObject.GetComponent<Enemy>().DamageCharacter(10, 0));
+            StartCoroutine(other.gameObject.GetComponent<Enemy>().DamageCharacter(50, 0));
         }
 
     }
