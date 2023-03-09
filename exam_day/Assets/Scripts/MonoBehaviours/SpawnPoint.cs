@@ -50,6 +50,16 @@ public class SpawnPoint : MonoBehaviour
         }
     }
 
+    void OnBecameVisible(){
+        CancelInvoke();
+    }
+
+    void OnBecameInvisible(){
+        if(repeatInterval >0 ){
+            InvokeRepeating("SpawnObject", 0, repeatInterval);
+        }
+    }
+
     
 
     public GameObject SpawnObject(){

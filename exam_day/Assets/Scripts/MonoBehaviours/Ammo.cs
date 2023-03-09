@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Ammo : MonoBehaviour
 {
@@ -16,8 +17,6 @@ public class Ammo : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
         if(collision is BoxCollider2D)
         {   
             // Verify if object is of tag Enemy
@@ -52,11 +51,17 @@ public class Ammo : MonoBehaviour
                 StartCoroutine(player.DamageCharacter(damageInflicted + damageBonus, 0.0f));
 
                 gameObject.SetActive(false);
-
             }
+            
 
+        }else if(collision is TilemapCollider2D)
+        {
+            gameObject.SetActive(false);
         }
+
     }
+
+    
     // Start is called before the first frame update
     void Start()
     {
