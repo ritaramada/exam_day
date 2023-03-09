@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directionAngle: 0
   directionVector: {x: 0, y: 1}
-  runSpeed: 5
+  runSpeed: 6
 --- !u!114 &-6550065549348297364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6adbe9709cd25b4a8b2334560c10804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHitPoints: 6
+  startingHitPoints: 10
   maxHitPoints: 10
   hitPoints: {fileID: 11400000, guid: ff0497dbee72bda4aa3d4d4618c73268, type: 2}
   coinCollector: {fileID: 11400000, guid: 5812584641944e6498d0ea32a124f619, type: 2}

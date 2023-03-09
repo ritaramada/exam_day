@@ -33,7 +33,6 @@ public class EnemyBasicPathing : MonoBehaviour
         while (true)
         {
             
-            
             if(GameObject.FindWithTag("Player") == null){
                 yield return null;
             }

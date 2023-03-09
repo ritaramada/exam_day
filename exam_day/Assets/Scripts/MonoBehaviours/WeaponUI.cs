@@ -59,11 +59,17 @@ public class WeaponUI : MonoBehaviour
             float upgradeCost = weaponUpgrades.upgradeCost[upgrade];
             float upgradeCostTotal = upgradeLevel * upgradeCost;
 
+            bool isMaxLevel = (upgradeLevel -1 == weaponUpgrades.upgradeMax[upgrade]);
+
             if(child.gameObject.name == "LevelText"){
-                child.gameObject.GetComponent<TextMeshProUGUI>().text = (upgradeLevel-1).ToString();
+                if(isMaxLevel){
+                    child.gameObject.GetComponent<TextMeshProUGUI>().text = "MAX";
+                }else{
+                    child.gameObject.GetComponent<TextMeshProUGUI>().text = (upgradeLevel-1).ToString();
+                }
             }
-            if(child.gameObject.name == "CostText"){
-                child.gameObject.GetComponent<TextMeshProUGUI>().text = upgradeCostTotal.ToString();
+            if(child.gameObject.name == "KeyText"){
+                continue;
             }
             if(child.gameObject.name == "UpgradeMask"){
                 //check the child of the upgrade mask
@@ -90,6 +96,10 @@ public class WeaponUI : MonoBehaviour
                         fillAmount = 1;
                     }
 
+                    if(isMaxLevel){
+                        fillAmount = 1;
+                    }
+                    
                     upgradeMaskChild.gameObject.GetComponent<Image>().fillAmount = fillAmount;
 
                 }
