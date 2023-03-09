@@ -192,7 +192,7 @@ MonoBehaviour:
   powerUp1Prefab: {fileID: 2426323641161866278, guid: bcb6fddc41a900e4d9e0dcd699067655, type: 3}
   powerUp2Prefab: {fileID: 4261845386641455344, guid: e0f46ff5ecb25c040a7be4e207e276b0, type: 3}
   coinDropChance: 60
-  powerUp1DropChance: 20
+  powerUp1DropChance: 10
   powerUp2DropChance: 10
   poolSize: 10
   pointsGiven: 50
@@ -215,7 +215,7 @@ MonoBehaviour:
   weaponUpgrades: {fileID: 11400000, guid: fd70219a5f5beb24194f9846bd44e494, type: 2}
   weaponRange: 10
   weaponFireRate: 3
-  weaponVelocity: 1.5
+  weaponVelocity: 0.5
   baseWeaponVelocity: 0
 --- !u!195 &-2013000340385824175
 NavMeshAgent:
