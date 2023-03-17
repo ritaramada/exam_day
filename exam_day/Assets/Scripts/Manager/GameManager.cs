@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     bool isGameOver = false;
 
+    public GameObject gamePausedScreen;
+
     GameObject player;
 
     void Awake(){
@@ -82,6 +84,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
+
         
     }
 
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
             gameTime.isPaused = true;
             gameTime.timeScale = 0;
             Time.timeScale = 0;
+
         }else{
             Debug.Log("Game is already paused");
         }

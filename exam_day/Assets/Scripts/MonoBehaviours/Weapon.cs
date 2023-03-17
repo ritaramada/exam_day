@@ -92,25 +92,6 @@ public class Weapon : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space)){
                 FireAmmo();
             }
-        
-
-        }else if(gameObject.tag == "Enemy"){
-
-            if(enemyBasicPathing == null) return;
-            directionAngle = enemyBasicPathing.directionAngle;
-            directionVector = enemyBasicPathing.directionVector;
-
-        }else{
-            print("Error in object");
-            return;
-        }
-        
-    }
-
-    void FixedUpdate(){
-        if(gameObject.tag == "Player"){
-            if(playerDirection == null) return;
-        
 
             if(Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Alpha1)){
                 UpgradeWeapon(WeaponUpgrades.UpgradeType.DAMAGE);
@@ -126,7 +107,17 @@ public class Weapon : MonoBehaviour
             }
         
 
+        }else if(gameObject.tag == "Enemy"){
+
+            if(enemyBasicPathing == null) return;
+            directionAngle = enemyBasicPathing.directionAngle;
+            directionVector = enemyBasicPathing.directionVector;
+
+        }else{
+            print("Error in object");
+            return;
         }
+        
     }
 
     void UpgradeWeapon(WeaponUpgrades.UpgradeType upgrade){

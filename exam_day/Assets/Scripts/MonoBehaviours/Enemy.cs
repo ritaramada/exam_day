@@ -118,7 +118,10 @@ public class Enemy : Character
     public override void ResetCharacter()
     {
         hitPoints = startingHitPoints + currentLevel*3;
+        
         pathing.ResetPathing();
+
+        GetComponent<SpriteRenderer>().color = Color.white;
 
     }
 
