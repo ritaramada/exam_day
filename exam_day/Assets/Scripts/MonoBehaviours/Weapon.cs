@@ -92,19 +92,6 @@ public class Weapon : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space)){
                 FireAmmo();
             }
-
-            if(Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Alpha1)){
-                UpgradeWeapon(WeaponUpgrades.UpgradeType.DAMAGE);
-            }
-            if(Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Alpha2)){
-                UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
-            }
-            if(Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Alpha3)){
-                UpgradeWeapon(WeaponUpgrades.UpgradeType.WEAPON_SPREAD);
-            }
-            if(Input.GetKey(KeyCode.V)|| Input.GetKey(KeyCode.Alpha4)){
-                UpgradeWeapon(WeaponUpgrades.UpgradeType.WEAPON_EXPLOSIVE);
-            }
         
 
         }else if(gameObject.tag == "Enemy"){
@@ -118,6 +105,28 @@ public class Weapon : MonoBehaviour
             return;
         }
         
+    }
+
+    void FixedUpdate(){
+        if(gameObject.tag == "Player"){
+            if(playerDirection == null) return;
+        
+
+            if(Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Alpha1)){
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.DAMAGE);
+            }
+            if(Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Alpha2)){
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.AMMO_SPEED);
+            }
+            if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Alpha3)){
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.WEAPON_SPREAD);
+            }
+            if(Input.GetKeyDown(KeyCode.V)|| Input.GetKeyDown(KeyCode.Alpha4)){
+                UpgradeWeapon(WeaponUpgrades.UpgradeType.WEAPON_EXPLOSIVE);
+            }
+        
+
+        }
     }
 
     void UpgradeWeapon(WeaponUpgrades.UpgradeType upgrade){

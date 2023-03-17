@@ -192,8 +192,8 @@ MonoBehaviour:
   powerUp1Prefab: {fileID: 2426323641161866278, guid: bcb6fddc41a900e4d9e0dcd699067655, type: 3}
   powerUp2Prefab: {fileID: 4261845386641455344, guid: e0f46ff5ecb25c040a7be4e207e276b0, type: 3}
   coinDropChance: 60
-  powerUp1DropChance: 10
-  powerUp2DropChance: 10
+  powerUp1DropChance: 15
+  powerUp2DropChance: 15
   poolSize: 10
   pointsGiven: 50
   damageStrength: 1

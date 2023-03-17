@@ -22,10 +22,10 @@ public class WeaponUpgrades : ScriptableObject
     };
 
     public Dictionary<UpgradeType, int> upgradeCost = new Dictionary<UpgradeType, int>(){
-        {UpgradeType.DAMAGE, 3},
-        {UpgradeType.AMMO_SPEED, 3},
-        {UpgradeType.WEAPON_SPREAD, 10},
-        {UpgradeType.WEAPON_EXPLOSIVE, 20}
+        {UpgradeType.DAMAGE, 1},
+        {UpgradeType.AMMO_SPEED, 1},
+        {UpgradeType.WEAPON_SPREAD, 3},
+        {UpgradeType.WEAPON_EXPLOSIVE, 3}
     };
 
     public Dictionary<UpgradeType, int> upgradeMax = new Dictionary<UpgradeType, int>(){
